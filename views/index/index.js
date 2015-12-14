@@ -1,3 +1,7 @@
 require('../layout');
 var $ = require('jquery');
-$('body').style('background-color', 'black');
+$(document).on('ready', function(){
+  $('body').css('background-color', 'black');
+  $('body').css('color', 'white');
+	
+});
