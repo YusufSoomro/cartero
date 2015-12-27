@@ -1,6 +1,8 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var models = require('../models');
+var bcrypt = require('bcrypt');
+
 module.exports = function (app) {
 
   // passport initialization
@@ -30,16 +32,17 @@ module.exports = function (app) {
           username: username
         }
       }).then(function (user) {
+        debugger;
         if (!user) {
           return done(null, false, {
-            message: "The user is not exist"
+            message: "Incorrect user name or password"
           });
         }
-        if (user.password === password) {
+        if (bcrypt.compareSync(password, user.password)) {
           return done(null, user);
         }
         return done(null, false, {
-          message: "Wrong password"
+          message: "Incorrect user name or password"
         });
       }).catch(function (err) {
         return done(err);

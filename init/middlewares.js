@@ -6,6 +6,8 @@ var session = require('express-session');
 var uuid = require("node-uuid");
 var express = require('express');
 var path = require('path');
+var flash = require('connect-flash');
+
 module.exports = function (app) {
 
   // uncomment after placing your favicon in /public
@@ -25,4 +27,5 @@ module.exports = function (app) {
     resave: false,
     saveUninitialized: false
   }));
+  app.use(flash());
 };
