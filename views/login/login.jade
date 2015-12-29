@@ -2,15 +2,11 @@ extends ../layout/layout
 
 block content
   h1= title
-  
   if error && error.length > 0
     p.errorMessage= error
   
   if info && info.length > 0
     p.infoMessage=  info
-  
-  if message && message.length > 0
-    p.messageMessage=  message
   
   form(action="/login", method="post")
     div
