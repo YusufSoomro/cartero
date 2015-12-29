@@ -3,7 +3,10 @@ extends ../layout/layout
 block content
   h1= title
   p Welcome to login page
-  
+
+  if message && message.length > 0
+    h5 Message
+    p.messageMessage= message  
   if error && error.length > 0
     h5 Error
     p.errorMessage= error
