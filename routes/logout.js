@@ -2,11 +2,10 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-/* GET home page. */
+// get logout page
 router.get('/', function (req, res, next) {
-  res.render('index/index', {
-    title: 'Express'
-  });
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;

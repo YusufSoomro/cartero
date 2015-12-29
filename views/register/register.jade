@@ -2,13 +2,17 @@ extends ../layout/layout
 
 block content
   h1= title
+  p Welcome to register page
   if error && error.length > 0
+    h5 Error
     p.errorMessage= error
-  
   if info && info.length > 0
-    p.infoMessage=  info
-  
-  form(action="/login", method="post")
+    h5 Success
+    p.infoMessage= info
+  form(action="/register", method="post")
+    div
+      label Email:
+      input(type="text", name="email")
     div
       label Username:
       input(type="text", name="username")
