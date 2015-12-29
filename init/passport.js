@@ -10,6 +10,7 @@ module.exports = function (app) {
   app.use(passport.session());
 
   passport.serializeUser(function (user, done) {
+    debugger;
     done(null, user.id);
   });
 
@@ -17,36 +18,39 @@ module.exports = function (app) {
     // query the current user from database
     models.User.findById(id)
       .then(function (user) {
+        debugger;
         done(null, user);
       }).catch(function (err) {
+        debugger;
         done(new Error('User ' + id + ' does not exist'));
       });
   });
 
 
-  passport.use(new LocalStrategy(
-    function (username, password, done) {
-      /* get the username and password from the input arguments of the function */
-      models.User.find({
-        where: {
-          username: username
-        }
-      }).then(function (user) {
+  passport.use(new LocalStrategy(function (username, password, done) {
+    debugger;
+    models.User.find({
+      where: {
+        username: username
+      }
+    }).then(function (user) {
+      if (!user) {
         debugger;
-        if (!user) {
-          return done(null, false, {
-            message: "Incorrect user name or password"
-          });
-        }
-        if (bcrypt.compareSync(password, user.password)) {
-          return done(null, user);
-        }
         return done(null, false, {
-          message: "Incorrect user name or password"
+          message: "Incorrect username"
         });
-      }).catch(function (err) {
-        return done(err);
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        debugger;
+        return done(null, user);
+      }
+      debugger;
+      return done(null, false, {
+        message: "Incorrect password"
       });
-    }
-  ));
+    }).catch(function (err) {
+      debugger;
+      return done(err);
+    });
+  }));
 };

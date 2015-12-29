@@ -2,14 +2,16 @@ extends ../layout/layout
 
 block content
   h1= title
-  p Welcome to login page
   
   if error && error.length > 0
-    h5 Error
     p.errorMessage= error
+  
   if info && info.length > 0
-    h5 Congrats
     p.infoMessage=  info
+  
+  if message && message.length > 0
+    p.messageMessage=  message
+  
   form(action="/login", method="post")
     div
       label Username:

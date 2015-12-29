@@ -4,7 +4,7 @@ var flash = require('connect-flash');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
 var models = require('../models');
-var async = require('asynce');
+var async = require('async');
 
 // password recovery
 router.get('/password', function (req, res) {

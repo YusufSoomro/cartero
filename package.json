@@ -8,6 +8,7 @@
     "watch": "./scripts/nodemon_watch.sh"
   },
   "dependencies": {
+    "async": "^1.5.0",
     "bcrypt": "^0.8.5",
     "body-parser": "~1.13.2",
     "cartero-express-middleware": "^1.0.0",

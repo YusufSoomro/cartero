@@ -5,17 +5,17 @@ var flash = require('connect-flash');
 // get login page
 router.get('/', function (req, res, next) {
   res.render('login/login', { 
-    message: req.flash('error'),
-    info: req.flash('info')
+    error: req.flash('error'),
+    info: req.flash('info'),
+    title: 'login'
   });
 });
 // post login page
 router.post('/',
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true
-  })
-);
+  }));
 
 module.exports = router;
